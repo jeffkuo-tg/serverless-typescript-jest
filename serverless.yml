@@ -1,4 +1,4 @@
-service: aws-node-typescript
+service: serverless-typescript-jest
 frameworkVersion: '3'
 
 provider:
