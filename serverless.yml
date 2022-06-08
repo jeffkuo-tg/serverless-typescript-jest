@@ -4,6 +4,8 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs12.x
+  iam:
+    deploymentRole: arn:aws:iam::765557214082:role/ServerlessCloudFormationExecutionRole
 
 functions:
   hello:
@@ -17,7 +19,7 @@ functions:
     handler: handler.getUser
     events:
       - http:
-          path: user
+          path: user/{id}
           method: get
 plugins:
   - serverless-offline
