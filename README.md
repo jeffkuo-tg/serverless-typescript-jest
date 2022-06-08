@@ -32,7 +32,7 @@
         "test": "jest"
     }
     ```
-8. Run the follwong command to install serverless offline:
+8. Run the following command to install serverless offline:
     ```
     npm install serverless-offline --save-dev
     ```
@@ -41,11 +41,11 @@
     plugins:
       - serverless-offline
     ```
-10. Run the follwong command to install aws-lambda:
+10. Run the following command to install aws-lambda:
     ```
     npm install -D @types/aws-lambda
     ```
-11. Run the follwoing command to install serverless-esbuild, which provides zero-config JavaScript and TypeScript code bundling:
+11. Run the following command to install serverless-esbuild, which provides zero-config JavaScript and TypeScript code bundling:
     ```
     npm install -D serverless-esbuild esbuild
     ```
