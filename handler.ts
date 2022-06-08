@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const hello = async (event: any, context: any, callback: any) => {
+export const hello = async (event, context, callback) => {
   const response =  {
     statusCode: 200,
     body: JSON.stringify(
@@ -13,7 +13,7 @@ export const hello = async (event: any, context: any, callback: any) => {
   callback(null, response);
 }
 
-export const getUser = async () => {
-  const resp = await axios.get('https://jsonplaceholder.typicode.com/users/1');
+export const getUser = async (id: number) => {
+  const resp = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
   return resp.data;
 }

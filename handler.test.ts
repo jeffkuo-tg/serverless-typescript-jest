@@ -1,9 +1,11 @@
 import { getUser } from "./handler";
 
 describe('Test handler functions', () => {
-    test('User fetched name should be Leanne Graham', async () => {
-        expect.assertions(1);
-        const data = await getUser();
-        expect(data.name).toEqual('Leanne Graham');
+    test('Test getUaser', async () => {
+        const user1 = await getUser(1);
+        expect(user1.name).toEqual('Leanne Graham');
+
+        const user2 = await getUser(2);
+        expect(user2.name).not.toEqual('Leanne Graham');
       });
 });
