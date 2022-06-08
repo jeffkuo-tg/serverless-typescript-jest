@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { Context, APIGatewayProxyCallback, APIGatewayEvent } from 'aws-lambda';
 
-export const hello = async (event, context, callback) => {
+export const hello = async (event: APIGatewayEvent, context: Context, callback: APIGatewayProxyCallback) => {
   const response =  {
     statusCode: 200,
     body: JSON.stringify(

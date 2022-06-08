@@ -1,4 +1,4 @@
-import { getUser } from "./handler";
+import { getUser } from "../handler";
 
 describe('Test handler functions', () => {
     test('Test getUaser', async () => {
