@@ -1,31 +1,31 @@
 {
-  "name": "serverless-typescript-jest",
-  "version": "1.0.0",
-  "description": "Serverless Framework AWS Typescript with Jest Tests",
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc",
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jeffkuo-tg/serverless-typescript-jest.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jeffkuo-tg/serverless-typescript-jest/issues"
-  },
-  "homepage": "https://github.com/jeffkuo-tg/serverless-typescript-jest#readme",
-  "devDependencies": {
-    "@types/aws-lambda": "^8.10.99",
-    "@types/jest": "^28.1.1",
-    "esbuild": "^0.14.43",
-    "jest": "^28.1.1",
-    "serverless-esbuild": "^1.30.0",
-    "serverless-offline": "^8.8.0",
-    "ts-jest": "^28.0.4",
-    "typescript": "^4.7.3"
-  }
+    "name": "serverless-typescript-jest",
+    "version": "1.0.0",
+    "description": "Serverless Framework AWS Typescript with Jest Tests",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jeffkuo-tg/serverless-typescript-jest.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jeffkuo-tg/serverless-typescript-jest/issues"
+    },
+    "homepage": "https://github.com/jeffkuo-tg/serverless-typescript-jest#readme",
+    "devDependencies": {
+        "@types/aws-lambda": "^8.10.99",
+        "@types/jest": "^28.1.1",
+        "esbuild": "^0.14.43",
+        "jest": "^28.1.1",
+        "serverless-esbuild": "^1.30.0",
+        "serverless-offline": "^8.8.0",
+        "ts-jest": "^28.0.4",
+        "typescript": "^4.7.3"
+    }
 }
