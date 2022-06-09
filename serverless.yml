@@ -1,5 +1,5 @@
 service: serverless-typescript-jest
-frameworkVersion: "3"
+frameworkVersion: '3'
 
 provider:
   name: aws
@@ -21,12 +21,13 @@ functions:
       - http:
           path: user/{id}
           method: get
+
   lambdaService:
     handler: handler.lambdaService
     events:
       - http:
-        path: lambdaService/{id}
-        method: get
+          path: lambdaService/{id}
+          method: get
 plugins:
   - serverless-offline
   - serverless-esbuild

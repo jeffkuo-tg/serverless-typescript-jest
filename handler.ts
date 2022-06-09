@@ -1,6 +1,6 @@
-import axios from "axios";
-import { Context, APIGatewayProxyCallback, APIGatewayEvent } from "aws-lambda";
-import { retrieveData } from "./dataService";
+import axios from 'axios';
+import { Context, APIGatewayProxyCallback, APIGatewayEvent } from 'aws-lambda';
+import { retrieveData } from './dataService';
 
 export const hello = async (
   event: APIGatewayEvent,
@@ -10,8 +10,8 @@ export const hello = async (
   const response = {
     statusCode: 200,
     body: JSON.stringify({
-      message: "Hello World!",
-    }),
+      message: 'Hello World!'
+    })
   };
 
   callback(null, response);
@@ -27,13 +27,13 @@ export const getUser = async (id: number) => {
 export const lambdaService = async (event: APIGatewayEvent) => {
   const param: any = event.pathParameters;
   const id = param.id;
-  // const id = event.pathParameters.id;
+
   if (!id) {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        message: "Invalid Request. id is required in path parameters.",
-      }),
+        message: 'Invalid Request. id is required in path parameters.'
+      })
     };
   }
   let response = await retrieveData(id);
@@ -43,8 +43,8 @@ export const lambdaService = async (event: APIGatewayEvent) => {
     return {
       statusCode: response.statusCode,
       body: JSON.stringify({
-        message: response.message,
-      }),
+        message: response.message
+      })
     };
   }
 };
