@@ -1,33 +1,32 @@
 service: serverless-typescript-jest
-frameworkVersion: '3'
+frameworkVersion: "3"
 
 provider:
-    name: aws
-    runtime: nodejs12.x
-    iam:
-        deploymentRole: arn:aws:iam::765557214082:role/ServerlessCloudFormationExecutionRole
+  name: aws
+  runtime: nodejs12.x
+  iam:
+    deploymentRole: arn:aws:iam::765557214082:role/ServerlessCloudFormationExecutionRole
 
 functions:
-    hello:
-        handler: handler.hello
-        events:
-            - http:
-                  path: hello
-                  method: get
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: hello
+          method: get
 
-    getUser:
-        handler: handler.getUser
-        events:
-            - http:
-                  path: user/{id}
-                  method: get
-
-    lambdaService:
-        handler: handler.lambdaService
-        events:
-            - http:
-              path: lambdaService/{id}
-              method: get
+  getUser:
+    handler: handler.getUser
+    events:
+      - http:
+          path: user/{id}
+          method: get
+  lambdaService:
+    handler: handler.lambdaService
+    events:
+      - http:
+        path: lambdaService/{id}
+        method: get
 plugins:
-    - serverless-offline
-    - serverless-esbuild
+  - serverless-offline
+  - serverless-esbuild
