@@ -2,8 +2,7 @@ import { getUser, lambdaService } from '../handler';
 import axios from 'axios';
 import { retrieveData } from '../dataService';
 import { Context, APIGatewayProxyCallback, APIGatewayEvent } from 'aws-lambda';
-// @ts-ignore: types not present for aws-event-mocks
-import createEvent from 'aws-event-mocks';
+import createEvent from 'mock-aws-events';
 
 jest.mock('axios'); // need to placed in the same scope as import statement
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -51,12 +50,9 @@ describe('lambdaService', () => {
       message: 'mocked data'
     };
 
-    const testEvent = createEvent({
-      template: 'aws:apiGateway',
-      merge: {
-        pathParameters: {
-          id: '1'
-        }
+    const testEvent = createEvent('aws:apiGateway', {
+      pathParameters: {
+        id: '1'
       }
     });
 
@@ -65,12 +61,9 @@ describe('lambdaService', () => {
   });
 
   test('Negative test: dataService fails', async () => {
-    const testEvent = createEvent({
-      template: 'aws:apiGateway',
-      merge: {
-        pathParameters: {
-          id: '2'
-        }
+    const testEvent = createEvent('aws:apiGateway', {
+      pathParameters: {
+        id: '2'
       }
     });
 
@@ -86,12 +79,9 @@ describe('lambdaService', () => {
   });
 
   test('Negative test: invalid input', async () => {
-    const testEvent = createEvent({
-      template: 'aws:apiGateway',
-      merge: {
-        pathParameters: {
-          id: null
-        }
+    const testEvent = createEvent('aws:apiGateway', {
+      pathParameters: {
+        id: undefined
       }
     });
 
