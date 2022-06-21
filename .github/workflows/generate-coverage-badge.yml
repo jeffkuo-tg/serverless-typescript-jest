@@ -22,4 +22,6 @@ jobs:
         run: npm install
 
       - name: Run test and generate coverage badge
-        run: npm run make-badges
+        run: | 
+            npm test
+            npm run make-badges
