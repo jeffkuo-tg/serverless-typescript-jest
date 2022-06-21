@@ -2,6 +2,10 @@ import axios from 'axios';
 import { Context, APIGatewayProxyCallback, APIGatewayEvent } from 'aws-lambda';
 import { retrieveData } from './dataService';
 
+export const sum = (num1: number, num2: number) => {
+  return num1 + num2;
+};
+
 export const hello = async (
   event: APIGatewayEvent,
   context: Context,
