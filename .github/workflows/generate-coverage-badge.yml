@@ -23,6 +23,3 @@ jobs:
 
       - name: Run test and generate coverage badge
         run: npm run make-badges
-        
-      - name: Generating coverage badges
-        uses: ./
