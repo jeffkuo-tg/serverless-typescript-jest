@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "make-badges": "jest --coverage && istanbul-badges-readme -- --ci"
+    "make-badges": "jest --coverage && istanbul-badges-readme"
   },
   "repository": {
     "type": "git",
