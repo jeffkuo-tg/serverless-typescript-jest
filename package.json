@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "test": "jest --coverage"
+    "test": "jest",
+    "make-badges": "jest --coverage && istanbul-badges-readme"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "@types/jest": "^28.1.1",
     "aws-event-mocks": "^0.0.0",
     "esbuild": "^0.14.43",
+    "istanbul-badges-readme": "^1.8.2",
     "jest": "^28.1.1",
     "mock-aws-events": "^1.0.1",
     "serverless-esbuild": "^1.30.0",
