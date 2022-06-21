@@ -16,9 +16,7 @@ jobs:
           node-version: '12.18.3'
 
       - name: Install the specified version of npm
-        run: | 
-            npm install npm@8.1.4 -g
-            npm --version
+        run: npm install npm@8.1.4 -g
 
       - name: Install dependencies
         run: npm install
