@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { Context, APIGatewayProxyCallback, APIGatewayEvent } from 'aws-lambda';
-import { retrieveData } from './dataService';
 
 export const sum = (num1: number, num2: number) => {
   return num1 + num2;
@@ -21,34 +20,17 @@ export const hello = async (
   callback(null, response);
 };
 
-export const getUser = async (id: number) => {
-  const resp = await axios.get(
-    `https://jsonplaceholder.typicode.com/users/${id}`
+export const getUser = async (event: APIGatewayEvent) => {
+  const result = await axios.get(
+    `https://jsonplaceholder.typicode.com/users/${event.pathParameters?.id}`
   );
-  return resp.data;
-};
 
-export const lambdaService = async (event: APIGatewayEvent) => {
-  const param: any = event.pathParameters;
-  const id = param.id;
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify({
+      data: result.data
+    })
+  };
 
-  if (!id) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({
-        message: 'Invalid Request. id is required in path parameters.'
-      })
-    };
-  }
-  let response = await retrieveData(id);
-  if (response.statusCode == 200) {
-    return response;
-  } else {
-    return {
-      statusCode: response.statusCode,
-      body: JSON.stringify({
-        message: response.message
-      })
-    };
-  }
+  return response;
 };

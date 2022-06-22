@@ -22,12 +22,6 @@ functions:
           path: user/{id}
           method: get
 
-  lambdaService:
-    handler: handler.lambdaService
-    events:
-      - http:
-          path: lambdaService/{id}
-          method: get
 plugins:
   - serverless-offline
   - serverless-esbuild
