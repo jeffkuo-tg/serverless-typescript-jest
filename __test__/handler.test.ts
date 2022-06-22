@@ -5,11 +5,11 @@ import createEvent from 'mock-aws-events';
 jest.mock('axios'); // need to placed in the same scope as import statement
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-// describe('Test sum', () => {
-//   test('1 + 1 == 2', () => {
-//     expect(sum(1, 1)).toBe(2);
-//   });
-// });
+describe('Test sum', () => {
+  test('1 + 1 == 2', () => {
+    expect(sum(1, 1)).toBe(2);
+  });
+});
 
 describe('Test handler functions', () => {
   test('Test getUaser with axios mocked', async () => {
