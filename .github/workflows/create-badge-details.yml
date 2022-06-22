@@ -22,14 +22,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run testa  
-        run: npm test --coverage
+      - name: Run Tests
+        run: npm run test -- --coverage | tee ./coverage.txt
 
       - name: Jest coverage comment
         id: coverageComment
         uses: MishaKav/jest-coverage-comment@main
         with:
           hide-comment: true
+          coverage-path: ./coverage.txt
           coverage-summary-path: ./coverage/coverage-summary.json
 
       - name: Check the output coverage
@@ -39,7 +40,7 @@ jobs:
           echo "Summary Html - ${{ steps.coverageComment.outputs.summaryHtml }}"
 
       - name: Create the Badge
-            if: ${{ github.ref == 'refs/heads/main' }}
+            if: ${{ github.ref == 'refs/heads/master' }}
         uses: schneegans/dynamic-badges-action@v1.0.0
         with:
           auth: ${{ secrets.JEST_COVERAGE_COMMENT }}
