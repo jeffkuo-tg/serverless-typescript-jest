@@ -1,4 +1,4 @@
-name: generate-coverage-badge
+name: create-badge-details
 on:
   push:
     branches:
@@ -22,30 +22,30 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run test and generate coverage badge
-        run: npm run make-badges
+      - name: Run testa  
+        run: npm test --coverage
 
-      - name: Verify Changed files
-        uses: tj-actions/verify-changed-files@v9.1
-        id: verify-changed-files
+      - name: Jest coverage comment
+        id: coverageComment
+        uses: MishaKav/jest-coverage-comment@main
         with:
-          files: README.md
+          hide-comment: true
+          coverage-summary-path: ./coverage/coverage-summary.json
 
-      - name: Commit changes
-        if: steps.verify-changed-files.outputs.files_changed == 'true'
+      - name: Check the output coverage
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add README.md
-          git commit -m "chore: update coverage badge"
+          echo "Coverage Percantage - ${{ steps.coverageComment.outputs.coverage }}"
+          echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
+          echo "Summary Html - ${{ steps.coverageComment.outputs.summaryHtml }}"
 
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
-
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+      - name: Create the Badge
+            if: ${{ github.ref == 'refs/heads/main' }}
+        uses: schneegans/dynamic-badges-action@v1.0.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ steps.extract_branch.outputs.branch }}
+          auth: ${{ secrets.JEST_COVERAGE_COMMENT }}
+          gistID: 5e90d640f8c212ab7bbac38f72323f80
+          filename: jest-coverage-comment__main.json
+          label: Coverage
+          message: ${{ steps.coverageComment.outputs.coverage }}%
+          color: ${{ steps.coverageComment.outputs.color }}
+          namedLogo: javascript
