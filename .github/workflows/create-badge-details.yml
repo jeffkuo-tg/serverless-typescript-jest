@@ -22,22 +22,35 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run Tests
-        run: npm run test -- --coverage | tee ./coverage.txt
+      - name: Run test and generate coverage badge
+        run: npm run make-badges
 
-      - name: Jest coverage comment
-        id: coverageComment
-        uses: MishaKav/jest-coverage-comment@main
+      - name: Create report
+        uses: romeovs/lcov-reporter-action@v0.2.16
         with:
-          hide-summary: true
-          coverage-summary-path: ./coverage/coverage-summary.json
+          lcov-file: ./coverage/lcov.info
 
-      - name: Update Readme with Coverage Html
+      - name: Verify Changed files
+        uses: tj-actions/verify-changed-files@v9.1
+        id: verify-changed-files
+        with:
+          files: README.md
+
+      - name: Commit changes
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
         run: |
-          sed -i '/<!-- Jest Coverage Comment:Begin -->/,/<!-- Jest Coverage Comment:End -->/c\<!-- Jest Coverage Comment:Begin -->\n\${{ steps.coverageComment.outputs.summaryHtml }}\n<!-- Jest Coverage Comment:End -->' ./README.md
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git commit -m "chore: update coverage badge"
 
-      - name: Commit & Push changes to Readme
-        uses: actions-js/push@master
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          message: Update coverage on Readme
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ steps.extract_branch.outputs.branch }}

@@ -1,8 +1,5 @@
 # Serverless Framework AWS Typescript with Jest Tests
 
-<!-- Jest Coverage Comment:Begin -->
-<!-- Jest Coverage Comment:End -->
-
 ## Coverage Badge
 
 | Statements                                                                            | Branches                                                                    | Functions                                                                        | Lines                                                                    |
