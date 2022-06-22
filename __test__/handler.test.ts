@@ -29,6 +29,6 @@ describe('Test handler functions', () => {
 
     mockedAxios.get.mockResolvedValueOnce(response); // return {data: {name: 'Leanne Graham'}}
     const user1 = await getUser(testEvent); // even user2's name is not Leanne Graham, we still pass the test
-    expect(JSON.parse(user1.body).name).toEqual('Leanne Graham');
+    expect(JSON.parse(user1.body).data.name).toEqual('Leanne Graham');
   });
 });
