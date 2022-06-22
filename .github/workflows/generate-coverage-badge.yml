@@ -2,7 +2,8 @@ name: generate-coverage-badge
 on:
   push:
     branches:
-      - [master, badge]
+      - master
+      - badge
 jobs:
   test:
     runs-on: ubuntu-latest
