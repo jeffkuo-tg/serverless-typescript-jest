@@ -55,4 +55,4 @@ jobs:
         with:
           name: code-coverage-report
           path: |
-            ./coverage/Icov-report/
+            ./coverage/Icov-report/index.html
